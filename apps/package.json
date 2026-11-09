@@ -1,0 +1,26 @@
+{
+  "name": "praktikum-minggu1-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Praktikum Minggu 1 - Express + EJS + Tailwind + PostgreSQL",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "build:css": "tailwindcss -i ./src/styles/input.css -o ./public/css/output.css --minify",
+    "watch:css": "tailwindcss -i ./src/styles/input.css -o ./public/css/output.css --watch",
+    "postinstall": "npm run build:css"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

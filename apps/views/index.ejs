@@ -1,0 +1,78 @@
+<%- include('partials/head', { title: title }) %>
+<%- include('partials/header') %>
+
+<section class="mb-8">
+  <h1 class="text-2xl font-bold text-slate-900">Task Board Kelompok</h1>
+  <p class="mt-1 text-sm text-slate-600">
+    Catat pekerjaan kelompok kalian. Data disimpan di PostgreSQL dan ditampilkan lewat Express + EJS.
+  </p>
+</section>
+
+<section class="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+  <div class="card text-center"><p class="text-xs font-medium uppercase text-slate-500">Semua</p><p id="stat-all" class="mt-1 text-3xl font-bold text-slate-900">0</p></div>
+  <div class="card text-center"><p class="text-xs font-medium uppercase text-slate-500">To Do</p><p id="stat-todo" class="mt-1 text-3xl font-bold text-slate-600">0</p></div>
+  <div class="card text-center"><p class="text-xs font-medium uppercase text-slate-500">Doing</p><p id="stat-doing" class="mt-1 text-3xl font-bold text-amber-600">0</p></div>
+  <div class="card text-center"><p class="text-xs font-medium uppercase text-slate-500">Done</p><p id="stat-done" class="mt-1 text-3xl font-bold text-emerald-600">0</p></div>
+</section>
+
+<section class="card mb-8">
+  <h2 class="mb-4 text-base font-semibold text-slate-900">Tambah Task Baru</h2>
+  <form id="task-form" class="grid gap-4 sm:grid-cols-2">
+    <div>
+      <label for="title" class="mb-1 block text-sm font-medium text-slate-700">Judul</label>
+      <input id="title" name="title" type="text" required minlength="3" maxlength="150" placeholder="Contoh: Install Nginx" class="input">
+    </div>
+    <div>
+      <label for="assignee" class="mb-1 block text-sm font-medium text-slate-700">Penanggung jawab</label>
+      <input id="assignee" name="assignee" type="text" maxlength="80" placeholder="Contoh: Anggota 3" class="input">
+    </div>
+    <div class="sm:col-span-2">
+      <label for="description" class="mb-1 block text-sm font-medium text-slate-700">Deskripsi (opsional)</label>
+      <textarea id="description" name="description" rows="2" maxlength="500" placeholder="Catatan singkat..." class="input"></textarea>
+    </div>
+    <div class="sm:col-span-2">
+      <button type="submit" class="btn-primary">Simpan Task</button>
+    </div>
+  </form>
+</section>
+
+<section>
+  <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+    <h2 class="text-base font-semibold text-slate-900">Daftar Task</h2>
+    <div class="flex flex-wrap gap-2">
+      <button type="button" data-filter="all" class="btn-filter">Semua</button>
+      <button type="button" data-filter="todo" class="btn-filter">To Do</button>
+      <button type="button" data-filter="doing" class="btn-filter">Doing</button>
+      <button type="button" data-filter="done" class="btn-filter">Done</button>
+    </div>
+  </div>
+
+  <ul id="task-list" class="space-y-3"></ul>
+  <p id="task-empty" class="hidden rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center text-sm text-slate-500">
+    Belum ada task pada filter ini.
+  </p>
+</section>
+
+<template id="task-template">
+  <li class="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:flex-row sm:items-start sm:justify-between">
+    <div class="min-w-0 flex-1">
+      <div class="flex flex-wrap items-center gap-2">
+        <h3 data-field="title" class="break-words font-semibold text-slate-900"></h3>
+        <span data-field="badge" class="rounded-full px-2.5 py-0.5 text-xs font-semibold"></span>
+      </div>
+      <p data-field="description" class="mt-1 break-words text-sm text-slate-600"></p>
+      <p class="mt-2 text-xs text-slate-400"><span data-field="assignee"></span> &middot; <span data-field="date"></span></p>
+    </div>
+    <div class="flex shrink-0 items-center gap-2">
+      <select data-field="status" aria-label="Ubah status" class="input w-auto py-1.5">
+        <option value="todo">To Do</option>
+        <option value="doing">Doing</option>
+        <option value="done">Done</option>
+      </select>
+      <button type="button" data-action="delete" class="btn-danger">Hapus</button>
+    </div>
+  </li>
+</template>
+
+<script src="/js/tasks.js" defer></script>
+<%- include('partials/footer') %>
