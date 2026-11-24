@@ -1,0 +1,8 @@
+# File yang TIDAK ikut dikirim ke Docker saat build
+node_modules
+.env
+.env.bak*
+*.log
+Dockerfile
+.dockerignore
+public/css/output.css

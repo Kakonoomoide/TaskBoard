@@ -24,6 +24,9 @@ nano scripts/config.env          # isi DB_PASSWORD
 | `health.sh` | Cek kesehatan server (`-q`, `-w DETIK`), kode keluar 0/1/2 |
 | `pm2-manage.sh` | Pengelolaan PM2 (status, start, stop, restart, logs, ...) |
 | `nginx-manage.sh` | Pengelolaan & status Nginx (status, reload, sync, logs, rate-test, ...) |
+| `install-docker.sh` | (Minggu 3) Install Docker Engine + Compose plugin |
+| `docker-manage.sh` | (Minggu 3) Pengelolaan stack Docker Compose |
+| `docker-health.sh` | (Minggu 3) Cek apakah stack Docker berjalan & sehat (`-q`, `-w`, `-d`, `-u`) |
 | `lib/common.sh`, `lib/nginx.sh` | Fungsi bersama (jangan dijalankan langsung) |
 
 Semua script punya `-h` / `--help`. Jalankan sebagai user biasa (bukan root).
